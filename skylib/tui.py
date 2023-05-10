@@ -4,8 +4,13 @@ import unicodedata
 write = stdout.write
 width = os.get_terminal_size().columns
 
-def oneLine(color:int):
-    write(f'\u001b[38;5;{color}m')
+def oneLine(color:int=None):
+    ''' ダッシュ(-)로 된 줄 한 줄을 긋는 코드
+    color : 사용할 색상(256컬러 체계, 38;5;(숫자) 에서 뒤의 숫자만 적으면 됨), 없는 경우 39(터미널 기본색상)로 간주'''
+    if color is not None:
+        write(f'\u001b[38;5;{color}m')
+    else:
+        write('\u001b[39m')
     for i in range(width):
         write('-')
     write('\u001b[39m\n')

@@ -6,12 +6,12 @@ now = dt.now()
 #now = dt(2023,4,29,0,0,5,0)
 write = stdout.write
 
-write('\n\u001b[1m\u001b[38;5;45mSky\u001b[38;5;105mWare\u001b[22m\u001b[38;5;123m 업무관리 시스템\u001b[39m | ')
+write('\n')
+temp_left = '\u001b[1m\u001b[38;5;45mSky\u001b[38;5;105mWare\u001b[22m\u001b[38;5;123m 업무관리 시스템\u001b[39m | '
 compareDate = dt(2011,4,30,0,0,0,0)
-write(f'\u001b[38;5;123mD+{str((now-compareDate).days+1).zfill(4)} \u001b[39m')
+temp_left += f'\u001b[38;5;123mD+{str((now-compareDate).days+1).zfill(4)} \u001b[39m'
 if now.strftime('%m%d') == '0430':
-    write(f'\u001b[38;5;219m{now.year-2011}\u001b[39m주년 \u001b[38;5;154mD-DAY!!\u001b[39m')
-    dday_width = 14
+    temp_left += f'\u001b[38;5;219m{now.year-2011}\u001b[39m주년 \u001b[38;5;154mD-DAY!!\u001b[39m'
 else:
     if now.month <= 4:
         compareDate = dt(now.year,4,30,0,0,0,0)
@@ -19,11 +19,10 @@ else:
     else:
         compareDate = dt(now.year+1,4,30,0,0,0,0)
         nextYear = now.year-2010
-    write(f'\u001b[38;5;219m{nextYear}\u001b[39m주년까지 \u001b[38;5;154mD-{str((compareDate-now).days+1).zfill(3)}\u001b[39m')
-    dday_width = 16
-write(f' | 오늘의 공문번호 날짜부분 : \u001b[38;5;153mS{(dt.now().year-2011)*12+dt.now().month-3}{str(dt.now().day).zfill(2)}\u001b[39m')
-blank(119+dday_width)
-write('v\u001b[4m20191031\u001b[0m  \u001b[38;5;118m사용자명 : \u001b[38;5;154m경영이끎부 \u001b[38;5;47m대표이사 \u001b[38;5;159m하늘토끼\u001b[0m\n\n')
+    temp_left += f'\u001b[38;5;219m{nextYear}\u001b[39m주년까지 \u001b[38;5;154mD-{str((compareDate-now).days+1).zfill(3)}\u001b[39m'
+temp_left += f' | 오늘의 공문번호 날짜부분 : \u001b[38;5;153mS{(dt.now().year-2011)*12+dt.now().month-3}{str(dt.now().day).zfill(2)}\u001b[39m'
+tui.fullWidth(temp_left, 'v\u001b[4m20191031\u001b[0m  \u001b[38;5;118m사용자명 : \u001b[38;5;154m경영이끎부 \u001b[38;5;47m대표이사 \u001b[38;5;159m하늘토끼\u001b[0m')
+write('\n')
 
 print('\u001b[38;5;51m\u001b[1m하늘토끼님 마감이 엄청 많이 밀려있어요! \u001b[22m\u001b[38;5;225m 설마 일 안 하고 노실 건 아니죠?')
 
@@ -45,4 +44,4 @@ magamPrint('2023-04-30','[스카이웨어]  12주년 기념 RE:Born 프로젝트
 magamPrint('2023-10-31','[하늘민국]    정기 시간표 개편 / 일본진출입노선 준트님 黒鉄 新品川線 없어도 운용할 수 있게 23区内線 니지가사키~시나가와 구간 연장')
 magamPrint('2024-01-31','[하늘민국]    HAETI(구 HAsTog), maFuyu 신버전 개발')
 magamPrint('2024-10-31','[하늘민국]    유트, 레트에게 하늘특별시, 시온특별시 지도 보내기')
-oneLine()
+tui.oneLine(47)

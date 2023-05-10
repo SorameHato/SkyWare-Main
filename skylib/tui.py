@@ -1,10 +1,11 @@
-import stdout
+from sys import stdout
 import os
+import unicodedata
 write = stdout.write
 width = os.get_terminal_size().columns
 
-def oneLine():
-    write('\u001b[38;5;47m')
+def oneLine(color:int):
+    write(f'\u001b[38;5;{color}m')
     for i in range(width):
         write('-')
     write('\u001b[39m\n')
